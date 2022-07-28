@@ -19,5 +19,5 @@ module "firenet_1" {
 
   transit_module = module.mc_transit
   firewall_image = "Palo Alto Networks VM-Series Next-Generation Firewall (BYOL)"
-  fw_amount = 1
+  
 }
