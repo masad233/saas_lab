@@ -29,7 +29,7 @@ module "mc_cust_A_Landing_spoke" {
   cloud = "AWS"
   name = "cust-A-Landing"
   region = "us-east-1"
-  cidr = "10.200.10.10/24"
+  cidr = "10.200.10.0/24"
 account = "AWS"
 transit_gw = module.mc-transit.transit_gateway.gw_name
 gw_name = "cust_A_Landing_spoke"
@@ -43,7 +43,7 @@ module "mc_cust_B_Landing_spoke" {
   cloud = "AWS"
   name = "cust-B-Landing"
   region = "us-east-1"
-  cidr = "10.200.20.10/24"
+  cidr = "10.200.20.0/24"
 account = "AWS"
 transit_gw = module.mc-transit.transit_gateway.gw_name
 gw_name = "cust_B_Landing_spoke"
