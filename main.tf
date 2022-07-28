@@ -13,3 +13,11 @@ module "mc-transit" {
   local_as_number = 65100
   name = "vpc-saas-transit"
 }
+module "firenet_1" {
+  source  = "terraform-aviatrix-modules/mc-firenet/aviatrix"
+  version = "v1.1.2"
+
+  transit_module = module.mc_transit
+  firewall_image = "Palo Alto Networks VM-Series Next-Generation Firewall (BYOL)"
+  fw_amount = 1
+}
