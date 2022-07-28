@@ -34,7 +34,7 @@ account = "AWS"
 transit_gw = module.mc-transit.transit_gateway.gw_name
 gw_name = "cust-A-Landing-spoke"
 ha_gw = false
-network_domain = "Customer A"
+network_domain = aviatrix_segmentation_network_domain.customer_a.domain_name
 }
 module "mc_cust_B_Landing_spoke" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
@@ -48,8 +48,9 @@ account = "AWS"
 transit_gw = module.mc-transit.transit_gateway.gw_name
 gw_name = "cust-B-Landing-spoke"
 ha_gw = false
-network_domain = "Customer B"
+network_domain = aviatrix_segmentation_network_domain.customer_b.domain_name
 }
+
 module "mc_cust_A_spoke_VPC" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version = "1.2.4"
@@ -62,7 +63,7 @@ account = "AWS"
 transit_gw = module.mc-transit.transit_gateway.gw_name
 gw_name = "cust-A-spoke-VPC"
 ha_gw = false
-network_domain = "Customer A"
+network_domain = aviatrix_segmentation_network_domain.customer_a.domain_name
 }
 module "mc_cust_B_spoke_VPC" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
@@ -76,7 +77,7 @@ account = "AWS"
 transit_gw = module.mc-transit.transit_gateway.gw_name
 gw_name = "cust-B-spoke-VPC"
 ha_gw = false
-network_domain = "Customer B"
+network_domain = aviatrix_segmentation_network_domain.customer_b.domain_name
 }
 module "mc_shared_spoke_VPC" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
@@ -90,5 +91,5 @@ account = "AWS"
 transit_gw = module.mc-transit.transit_gateway.gw_name
 gw_name = "shared-spoke-VPC"
 ha_gw = false
-network_domain = "Shared Services"
+network_domain = aviatrix_segmentation_network_domain.shared.domain_name
 }
