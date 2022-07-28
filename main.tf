@@ -27,7 +27,7 @@ module "mc_cust_A_Landing_spoke" {
   version = "1.2.4"
   # insert the 4 required variables here
   cloud = "AWS"
-  name = "cust_A_Landing"
+  name = "cust-A-Landing"
   region = "us-east-1"
   cidr = "10.200.10.10/24"
 account = "AWS"
@@ -35,4 +35,18 @@ transit_gw = module.mc-transit.transit_gateway.gw_name
 gw_name = "cust_A_Landing_spoke"
 ha_gw = false
 network_domain = "Customer A"
+}
+module "mc_cust_B_Landing_spoke" {
+  source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version = "1.2.4"
+  # insert the 4 required variables here
+  cloud = "AWS"
+  name = "cust-B-Landing"
+  region = "us-east-1"
+  cidr = "10.200.20.10/24"
+account = "AWS"
+transit_gw = module.mc-transit.transit_gateway.gw_name
+gw_name = "cust_B_Landing_spoke"
+ha_gw = false
+network_domain = "Customer B"
 }
