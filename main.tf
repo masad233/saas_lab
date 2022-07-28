@@ -64,3 +64,31 @@ gw_name = "cust-A-spoke-VPC"
 ha_gw = false
 network_domain = "Customer A"
 }
+module "mc_cust_B_spoke_VPC" {
+  source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version = "1.2.4"
+  # insert the 4 required variables here
+  cloud = "AWS"
+  name = "cust-B-VPC"
+  region = "us-east-1"
+  cidr = "10.10.4.0/23"
+account = "AWS"
+transit_gw = module.mc-transit.transit_gateway.gw_name
+gw_name = "cust-B-spoke-VPC"
+ha_gw = false
+network_domain = "Customer B"
+}
+module "mc_shared_spoke_VPC" {
+  source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version = "1.2.4"
+  # insert the 4 required variables here
+  cloud = "AWS"
+  name = "shared-VPC"
+  region = "us-east-1"
+  cidr = "10.10.0.0/23"
+account = "AWS"
+transit_gw = module.mc-transit.transit_gateway.gw_name
+gw_name = "shared-spoke-VPC"
+ha_gw = false
+network_domain = "Shared Services"
+}
