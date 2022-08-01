@@ -4,7 +4,7 @@ module "mc-transit" {
   # insert the 3 required variables here
   cloud                  = "AWS"
   region                 = "us-east-1"
-  cidr                   = "10.100.10.0/23"
+  cidr                   = "10.10.100.0/23"
   account                = "AWS"
   enable_segmentation    = true
   enable_transit_firenet = true
@@ -29,7 +29,7 @@ module "mc_cust_A_Landing_spoke" {
   cloud          = "AWS"
   name           = "cust-A-Landing"
   region         = "us-east-1"
-  cidr           = "10.200.10.0/24"
+  cidr           = "10.10.10.0/24"
   account        = "AWS"
   transit_gw     = module.mc-transit.transit_gateway.gw_name
   gw_name        = "cust-A-Landing-spoke"
@@ -43,7 +43,7 @@ module "mc_cust_B_Landing_spoke" {
   cloud          = "AWS"
   name           = "cust-B-Landing"
   region         = "us-east-1"
-  cidr           = "10.200.20.0/24"
+  cidr           = "10.10.20.0/24"
   account        = "AWS"
   transit_gw     = module.mc-transit.transit_gateway.gw_name
   gw_name        = "cust-B-Landing-spoke"
@@ -93,44 +93,7 @@ module "mc_shared_spoke_VPC" {
   ha_gw          = false
   network_domain = aviatrix_segmentation_network_domain.shared.domain_name
 }
-# module "mc_cus_a_site" {
-#   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-#   version = "1.2.4"
-#   # insert the 4 required variables here
-#   cloud    = "AWS"
-#   name     = "cus-a-site"
-#   region   = "us-east-2"
-#   cidr     = "10.10.1.0/24"
-#   account  = "AWS"
-#   gw_name  = "cus-a-site"
-#   attached = false
-#   ha_gw    = false
-# }
-# module "mc_cus_b_site" {
-#   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-#   version = "1.2.4"
-#   # insert the 4 required variables here
-#   cloud    = "AWS"
-#   name     = "cus-b-site"
-#   region   = "us-east-2"
-#   cidr     = "10.10.1.0/24"
-#   account  = "AWS"
-#   gw_name  = "cus-b-site"
-#   attached = false
-#   ha_gw    = false
-# }
-# resource "aviatrix_gateway" "cus_a_site" {
-#   cloud_type   = 1
-#   account_name = "AWS"
-#   gw_name      = "cus-a-site"
-#   vpc_id       = "cus-a-site"
-#   vpc_reg      = "us-west-1"
-#   gw_size      = "t2.micro"
-#   subnet       = "10.0.0.0/24"
-#   tags         = {
-#     name = "value"
-#   }
-# }
+
 module "cus_a_site" {
   source  = "terraform-aviatrix-modules/mc-gateway/aviatrix"
   version = "1.0.4"
